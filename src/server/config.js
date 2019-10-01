@@ -36,7 +36,7 @@ module.exports = app => {
   });
 
   mySerial.on('err', (err)=>{
-    console.log(err);
+    console.log(err.message);
   })
 
   return app;
