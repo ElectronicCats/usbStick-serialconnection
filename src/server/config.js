@@ -1,5 +1,8 @@
 const path = require("path");
 
+const chalk = require('chalk');
+const log = console.log;
+
 const morgan = require("morgan");
 const express = require("express");
 
@@ -26,17 +29,19 @@ module.exports = app => {
     baudRate: 9600
   });
 
+  
   mySerial.on("open", () => {
-    console.log("Opened Serial Port!");
+    log(chalk.green("Opened Serial Port!"));
   });
 
-  //
+  //* listen data
   mySerial.on("data", data => {
-    console.log(data.toString());
+    log(chalk.green(data.toString()));
   });
 
+  //! ERROR
   mySerial.on('err', (err)=>{
-    console.log(err.message);
+    log(chalk.red(err.message));
   })
 
   return app;
