@@ -1,12 +1,17 @@
 const path = require("path");
 
-const chalk = require('chalk');
+const chalk = require("chalk");
 const log = console.log;
 
 const morgan = require("morgan");
 const express = require("express");
 
 const SerialPort = require("serialport");
+
+const bodyParser = require('body-parser');
+
+//Routes API
+const routes = require("../routes/API_HANOVER");
 
 module.exports = app => {
   //Settings
@@ -18,6 +23,11 @@ module.exports = app => {
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
 
+  app.use(bodyParser.urlencoded({extended: false}));
+
+  // routes
+  routes(app);
+
   // static files
   app.use("/public", express.static(path.join(__dirname, "../public")));
 
@@ -25,24 +35,30 @@ module.exports = app => {
   const ReadLine = SerialPort.parsers.Readline;
   const parser = new ReadLine();
 
-  const mySerial = new SerialPort("COM15", {
-    baudRate: 9600
+  const mySerial = new SerialPort("COM20", {
+    baudRate: 115200
   });
 
-  
+  mySerial.write('hello from node\n', (err) => {
+    if (err) {
+      return console.log('Error on write: ', err.message);
+    }
+    console.log('message written');
+  });
+
   mySerial.on("open", () => {
     log(chalk.green("Opened Serial Port!"));
   });
 
   //* listen data
   mySerial.on("data", data => {
-    log(chalk.green(data.toString()));
+    //let getData = data.toString();
   });
 
   //! ERROR
-  mySerial.on('err', (err)=>{
+  mySerial.on("err", err => {
     log(chalk.red(err.message));
-  })
+  });
 
   return app;
 };
