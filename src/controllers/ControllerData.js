@@ -1,4 +1,5 @@
 import { mySerial } from '../server/serialConnection';
+import axios from 'axios';
 
 function ControllerData(config) {}
 
@@ -70,6 +71,42 @@ ControllerData.prototype.openGripperAndLedOn = () => {
     }
     console.log("message written");
   });
+};
+
+/**@GET_DATA_CONTROLLER */
+ControllerData.prototype.getSerial_offCatrelay = (data) => {
+  console.log("/**GET DATA - OFF CAT RELAY");
+  //axios send data
+};
+
+ControllerData.prototype.getSerial_onCatrelay = (data) => {
+  console.log("/**GET DATA - ON CAT RELAY");
+  //axios send data
+};
+
+ControllerData.prototype.getSerial_onLedCatRelay = (data) => {
+  console.log("/**GET DATA - ON LED CAT RELAY");
+  //axios send data
+};
+
+ControllerData.prototype.getSerial_closeGripper = (data) => {
+  console.log("/**GET DATA - CLOSE GRIPPER");
+  //axios send data
+};
+
+ControllerData.prototype.getSerial_openGripper = (data) => {
+  console.log("/**GET DATA - OPEN GRIPPER");
+  //axios send data
+};
+
+ControllerData.prototype.getSerial_closeGripperAndLedOn = (data) => {
+  console.log("/**GET DATA - CLOSE GRIPPER AND LED ON");
+  //axios send data
+};
+
+ControllerData.prototype.getSerial_openGripperAndLedOn = (data) => {
+  console.log("/**GET DATA - OPEN GRIPPER AND LED ON");
+  //axios send data
 };
 
 module.exports = ControllerData;
