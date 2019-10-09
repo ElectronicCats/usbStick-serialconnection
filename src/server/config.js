@@ -9,11 +9,11 @@ import  bodyParser from 'body-parser';
 import routes from "../routes/API_HANOVER";
 
 // init Serial
-import { mySerial } from './serialConnection';
+import './serialConnection';
 
 module.exports = app => {
   //Settings
-  app.set("port", process.env.PORT || 3000);
+  app.set("port", process.env.PORT || 3002);
 
   //middlewares
   app.use(morgan("dev"));
