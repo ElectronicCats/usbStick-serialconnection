@@ -11,7 +11,7 @@ ControllerData.prototype.onLedCatRelay = () => {
     if (err) return console.log("Error on write: ", err.message);
     console.log("message written");
   });
-  
+
   //axios send data
   axios
     .post("http://striverq.borealixsec.com/api/CapturaSPC/RegParams", {
@@ -23,7 +23,7 @@ ControllerData.prototype.onLedCatRelay = () => {
       ]
     })
     .then(function(response) {
-      console.log(response);
+      console.log(response.data);
     })
     .catch(function(error) {
       console.log(error);
@@ -48,7 +48,7 @@ ControllerData.prototype.offLedCatRelay = () => {
       ]
     })
     .then(function(response) {
-      console.log(response);
+      console.log(response.data);
     })
     .catch(function(error) {
       console.log(error);
@@ -61,6 +61,23 @@ ControllerData.prototype.closeGripper = () => {
     if (err) return console.log("Error on write: ", err.message);
     console.log("message written");
   });
+
+  //axios send data
+  axios
+    .post("http://striverq.borealixsec.com/api/CapturaSPC/RegParams", {
+      FormStructureId: "5d97c6de4e976399ece4ae6d",
+      ReferenceParameters: [
+        { Name: "Foco Encendido", Value: 0 },
+        { Name: "Pinza Abierta", Value: 1 },
+        { Name: "Pinza Cerrada", Value: 0 }
+      ]
+    })
+    .then(function(response) {
+      console.log(response.data);
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
 };
 
 ControllerData.prototype.openGripper = () => {
@@ -69,6 +86,23 @@ ControllerData.prototype.openGripper = () => {
     if (err) return console.log("Error on write: ", err.message);
     console.log("message written");
   });
+
+  //axios send data
+  axios
+    .post("http://striverq.borealixsec.com/api/CapturaSPC/RegParams", {
+      FormStructureId: "5d97c6de4e976399ece4ae6d",
+      ReferenceParameters: [
+        { Name: "Foco Encendido", Value: 0 },
+        { Name: "Pinza Abierta", Value: 0 },
+        { Name: "Pinza Cerrada", Value: 1 }
+      ]
+    })
+    .then(function(response) {
+      console.log(response.data);
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
 };
 
 ControllerData.prototype.closeGripperAndLedOn = () => {
@@ -77,6 +111,23 @@ ControllerData.prototype.closeGripperAndLedOn = () => {
     if (err) return console.log("Error on write: ", err.message);
     console.log("message written");
   });
+
+  //axios send data
+  axios
+    .post("http://striverq.borealixsec.com/api/CapturaSPC/RegParams", {
+      FormStructureId: "5d97c6de4e976399ece4ae6d",
+      ReferenceParameters: [
+        { Name: "Foco Encendido", Value: 1 },
+        { Name: "Pinza Abierta", Value: 1 },
+        { Name: "Pinza Cerrada", Value: 0 }
+      ]
+    })
+    .then(function(response) {
+      console.log(response.data);
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
 };
 
 ControllerData.prototype.openGripperAndLedOn = () => {
@@ -85,6 +136,23 @@ ControllerData.prototype.openGripperAndLedOn = () => {
     if (err) return console.log("Error on write: ", err.message);
     console.log("message written");
   });
+
+  //axios send data
+  axios
+    .post("http://striverq.borealixsec.com/api/CapturaSPC/RegParams", {
+      FormStructureId: "5d97c6de4e976399ece4ae6d",
+      ReferenceParameters: [
+        { Name: "Foco Encendido", Value: 1 },
+        { Name: "Pinza Abierta", Value: 0 },
+        { Name: "Pinza Cerrada", Value: 1 }
+      ]
+    })
+    .then(function(response) {
+      console.log(response.data);
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
 };
 
 module.exports = ControllerData;
