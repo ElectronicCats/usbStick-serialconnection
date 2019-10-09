@@ -35,12 +35,12 @@ parser.on('data', function(data){
   let data_resive = data.toString();
   log(chalk.red(data_resive));
   if (data_resive != null) {
-    if (data_resive === "100") Controller.onLedCatRelay(); //Foco
-    if (data_resive === "000") Controller.offLedCatRelay(); //Foco
-    if (data_resive === "010") Controller.closeGripper(); //CLose
-    if (data_resive === "001") Controller.openGripper(); //Open
-    if (data_resive === "110") Controller.closeGripperAndLedOn(); //Close and Foco
-    if (data_resive === "101") Controller.openGripperAndLedOn(); //Open and Foco
+    if (data_resive === "100") Controller.postData_onLedCatRelay(); //Foco
+    if (data_resive === "000") Controller.postData_offLedCatRelay(); //Foco
+    if (data_resive === "010") Controller.postData_closeGripper(); //CLose
+    if (data_resive === "001") Controller.postData_openGripper(); //Open
+    if (data_resive === "110") Controller.postData_closeGripperAndLedOn(); //Close and Foco
+    if (data_resive === "101") Controller.postData_openGripperAndLedOn(); //Open and Foco
   } else {
     console.log("data is undifined");
   }
