@@ -13,7 +13,9 @@ void transmit(int a,int b, int c){
     LoRa.write(!b);
     LoRa.write(!c);
     LoRa.endPacket();
-    //SerialUSB.println("Dato enviado");
+    
+    LoRa.receive();
+    SerialUSB.println("Dato enviado");
   }
 
 /*
@@ -27,9 +29,10 @@ void transmit(){
   }
   */
 void setup() {
+  pinMode(LED_BUILTIN, OUTPUT);
+  
   Serial.begin(115200);
   while(!Serial);
-  
   
   LoRa.setPins(SS, RFM_RST, RFM_DIO0);
   //LoRa.setPins(17, 16, 4); //SAMD21
@@ -41,29 +44,29 @@ void setup() {
   LoRa.onReceive(onReceive);
   LoRa.receive();
   Serial.println("Datos recibidos");
-  Serial.println("usbStick is connected");
+  Serial.println("Input 3 \t Input 2 \t Input 1 \t");
   
 }
 
 void loop() {
-  int count = 0;
-  Serial.println(count++);
+
   if (Serial.available()) {
+    digitalWrite(LED_BUILTIN,HIGH);
     while(Serial.available()>0){
         incomingByte = Serial.read();
         data_tx[i0]=incomingByte-48;
-        Serial.println(data_tx[i0]); 
+        //Serial.println(data_tx[i0]); 
         i0++;
       }
       i0=0; 
       transmit(data_tx[0],data_tx[1], data_tx[2]);
    } 
+   digitalWrite(LED_BUILTIN, LOW);
 }
 
 
 void onReceive(int packetSize) {
   digitalWrite(14,HIGH);
-  
   int dato[3];
   int i2=0;
   // received a packet
@@ -73,11 +76,11 @@ void onReceive(int packetSize) {
     //Serial.print((char)LoRa.read());
     dato[i]=LoRa.read();
     Serial.print(!dato[i]);
-    Serial.print(" \t\t ");
   }
+  Serial.println();
   digitalWrite(14,LOW);
   
   // print RSSI of packet
-  
-  Serial.println(LoRa.packetRssi());
+  //Serial.print("");
+  //Serial.println(LoRa.packetRssi());
 }
