@@ -23,8 +23,6 @@ const parser = new parsers.Readline({
 
 mySerial.pipe(parser);
 
-
-mySerial.write('111');
 /**
  * @ON_CONNECT
  */
@@ -37,13 +35,12 @@ parser.on('data', function(data){
   let data_resive = data.toString();
   log(chalk.red(data_resive));
   if (data_resive != null) {
-    if (data_resive === "0000") Controller.getSerial_offCatrelay(); //Off
-    if (data_resive === "1000") Controller.getSerial_onCatrelay(); //Om
-    if (data_resive === "1001") Controller.getSerial_onLedCatRelay(); //Foco
-    if (data_resive === "1010") Controller.getSerial_closeGripper(); //CLose
-    if (data_resive === "1100") Controller.getSerial_openGripper(); //Open
-    if (data_resive === "1011") Controller.getSerial_closeGripperAndLedOn(); //Close and Foco
-    if (data_resive === "1101") Controller.getSerial_openGripperAndLedOn(); //Open and Foco
+    if (data_resive === "100") Controller.onLedCatRelay(); //Foco
+    if (data_resive === "000") Controller.offLedCatRelay(); //Foco
+    if (data_resive === "010") Controller.closeGripper(); //CLose
+    if (data_resive === "001") Controller.openGripper(); //Open
+    if (data_resive === "110") Controller.closeGripperAndLedOn(); //Close and Foco
+    if (data_resive === "101") Controller.openGripperAndLedOn(); //Open and Foco
   } else {
     console.log("data is undifined");
   }
