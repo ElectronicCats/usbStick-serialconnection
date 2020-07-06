@@ -2,7 +2,7 @@
   <img src="https://electroniccats.com/wp-content/uploads/2020/07/Badge_GHS.png" height="104" />
 </a>
 
-# usbStick-serialconnection
+# UsbStick-serialconnection
 
 UsbStick Serial Connection permite conectar un dispositivo por puerto serial y mandar datos a otro receptor de lora
 
